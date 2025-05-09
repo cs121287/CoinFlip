@@ -13,8 +13,16 @@ from threading import Thread, Event
 from functools import wraps
 
 app = Flask(__name__)
-CORS(app)
-app.config['SECRET_KEY'] = '6306663984'  # Change this to a secure secret key
+# Configure CORS to allow credentials and specific headers
+CORS(app, resources={
+    r"/api/*": {
+        "origins": ["http://localhost:5000", "http://127.0.0.1:5000", "http://192.168.0.209:5000"],
+        "methods": ["GET", "POST", "OPTIONS"],
+        "allow_headers": ["Content-Type", "Authorization"],
+        "supports_credentials": True
+    }
+})
+app.config['SECRET_KEY'] = 'Summer1!'  # Change this to a secure secret key
 
 # User database structure
 USERS_FILE = 'users.json'
@@ -28,7 +36,7 @@ def load_users():
         default_users = {
             'cs121287': {
                 'password': hashlib.sha256('your-password-here'.encode()).hexdigest(),
-                'created_at': '2025-05-09 08:25:41'
+                'created_at': '2025-05-09 08:52:59'
             }
         }
         save_users(default_users)
@@ -43,22 +51,50 @@ USERS = load_users()
 def token_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
+        # Handle preflight requests
+        if request.method == 'OPTIONS':
+            return jsonify({'message': 'Preflight request allowed'}), 200
+
+        # Get token from header
         token = None
-        if 'Authorization' in request.headers:
-            token = request.headers['Authorization'].split(" ")[1]
+        auth_header = request.headers.get('Authorization')
         
-        if not token:
+        if not auth_header:
             return jsonify({'message': 'Token is missing'}), 401
-        
+
         try:
+            # Split the header and verify it starts with 'Bearer'
+            parts = auth_header.split()
+            if len(parts) != 2 or parts[0].lower() != 'bearer':
+                return jsonify({'message': 'Invalid token format'}), 401
+            
+            token = parts[1]
+
+            # Decode and verify the token
             data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"])
             current_user = data['username']
-        except:
-            return jsonify({'message': 'Token is invalid'}), 401
+
+            # Check if user still exists
+            if current_user not in USERS:
+                return jsonify({'message': 'User no longer exists'}), 401
+
+        except jwt.ExpiredSignatureError:
+            return jsonify({'message': 'Token has expired'}), 401
+        except jwt.InvalidTokenError:
+            return jsonify({'message': 'Invalid token'}), 401
+        except Exception as e:
+            return jsonify({'message': f'Token validation error: {str(e)}'}), 401
         
         return f(current_user, *args, **kwargs)
     
     return decorated
+
+@app.after_request
+def after_request(response):
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+    return response
 
 class CoinFlip:
     def __init__(self):
@@ -181,8 +217,11 @@ class CoinFlip:
 
 coin_flipper = CoinFlip()
 
-@app.route('/api/login', methods=['POST'])
+@app.route('/api/login', methods=['POST', 'OPTIONS'])
 def login():
+    if request.method == 'OPTIONS':
+        return jsonify({'message': 'Preflight request allowed'}), 200
+
     auth = request.authorization
     
     if not auth or not auth.username or not auth.password:
@@ -197,16 +236,20 @@ def login():
             'exp': datetime.datetime.now(UTC) + datetime.timedelta(hours=24)
         }, app.config['SECRET_KEY'])
         
-        return jsonify({
+        response = jsonify({
             'token': token,
             'username': auth.username,
             'created_at': USERS[auth.username]['created_at']
         })
+        return response
     
     return make_response('Invalid credentials', 401, {'WWW-Authenticate': 'Basic realm="Login required"'})
 
-@app.route('/api/register', methods=['POST'])
+@app.route('/api/register', methods=['POST', 'OPTIONS'])
 def register():
+    if request.method == 'OPTIONS':
+        return jsonify({'message': 'Preflight request allowed'}), 200
+
     data = request.get_json()
     
     if not data or not data.get('username') or not data.get('password'):
@@ -238,16 +281,20 @@ def register():
         'exp': datetime.datetime.now(UTC) + datetime.timedelta(hours=24)
     }, app.config['SECRET_KEY'])
     
-    return jsonify({
+    response = jsonify({
         'token': token,
         'username': username,
         'created_at': USERS[username]['created_at']
-    }), 201
+    })
+    return response, 201
 
-@app.route('/api/status')
+@app.route('/api/status', methods=['GET', 'OPTIONS'])
 @token_required
 def get_status(current_user):
     """Get current status including time, next flip, history, and stats"""
+    if request.method == 'OPTIONS':
+        return jsonify({'message': 'Preflight request allowed'}), 200
+
     try:
         current_time = datetime.datetime.now(UTC)
         next_flip = coin_flipper.get_next_flip_time()
@@ -305,7 +352,7 @@ if __name__ == '__main__':
     flip_thread.start()
 
     try:
-        app.run(host='0.0.0.0', port=5000)
+        app.run(host='0.0.0.0', port=5000, debug=False)
     except Exception as e:
         print(f"Error starting server: {e}")
     finally:

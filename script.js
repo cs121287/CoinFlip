@@ -9,7 +9,9 @@ class CoinFlipClient {
         this.connected = false;
         
         // Check for authentication
-        if (!localStorage.getItem('token')) {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            console.log('No authentication token found');
             window.location.href = 'login.html';
             return;
         }
@@ -24,14 +26,23 @@ class CoinFlipClient {
 
     async getStatus(retries = 0) {
         try {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                console.log('Token missing, redirecting to login');
+                window.location.href = 'login.html';
+                return null;
+            }
+
             const response = await fetch(`${this.serverUrl}/status`, {
+                method: 'GET',
                 headers: {
-                    'Authorization': 'Bearer ' + localStorage.getItem('token')
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
                 }
             });
             
             if (response.status === 401) {
-                // Token expired or invalid
+                console.log('Authentication failed, redirecting to login');
                 localStorage.removeItem('token');
                 localStorage.removeItem('username');
                 window.location.href = 'login.html';
@@ -75,6 +86,14 @@ class CoinFlipClient {
             document.getElementById('headsPercent').textContent = `${status.stats.heads_percent}`;
             document.getElementById('tailsPercent').textContent = `${status.stats.tails_percent}`;
 
+            // Update user information if available
+            if (status.user) {
+                const userElement = document.getElementById('current_user');
+                if (userElement) {
+                    userElement.textContent = `Current User: ${status.user}`;
+                }
+            }
+
             // Check for new flip
             const latestFlip = status.history[0];
             if (latestFlip && this.lastFlipTime !== latestFlip.time) {
@@ -84,14 +103,6 @@ class CoinFlipClient {
 
             // Update history table
             this.updateHistoryTable(status.history);
-
-            // Update user information if available
-            if (status.user) {
-                const userElement = document.getElementById('current_user');
-                if (userElement) {
-                    userElement.textContent = status.user;
-                }
-            }
         } catch (error) {
             console.error('Error updating display:', error);
             document.getElementById('status').textContent = 'Error updating display';

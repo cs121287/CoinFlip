@@ -1,69 +1,57 @@
 {
   "history": [
     {
-      "time": "2025-05-09 08:40:00",
+      "time": "2025-05-09 08:56:00",
+      "result": "Heads",
+      "seed": "eba58531-c7e45923-b7465d21-2d73c5d4",
+      "hash": "04af3127a99fe2a3c40cb14950ef072c035a2c58bb1c8afe859fbd2665c7d9ec"
+    },
+    {
+      "time": "2025-05-09 08:55:00",
       "result": "Tails",
-      "seed": "5cbc5c64-a92b2b16-3cb4837d-d27b538d",
-      "hash": "9466c5d56246f1ea9aa429c05bf8dbede6b36bdd6bf4cb3408e6feb2b615fe57"
+      "seed": "46a95f76-885757ef-f34b5e03-c7ebec59",
+      "hash": "5f04344f69ea279baf7f9fbcf2ad4b1342ebf5692746ac3ff05aa4681f848bc9"
     },
     {
-      "time": "2025-05-09 08:39:00",
+      "time": "2025-05-09 08:51:00",
       "result": "Heads",
-      "seed": "f78aea8c-a69e2ea2-437e8760-fe92b21d",
-      "hash": "c9c6019cfcdb392dd686e9c37e2397760dde5a140415bcb1033ba53b02fcd880"
+      "seed": "b20e6a89-719c79df-9ba32626-c11763c1",
+      "hash": "2ae0d47444f1833449059cf307d3455db24d8e7a79f20f3b8109f1e8a8db3f61"
     },
     {
-      "time": "2025-05-09 08:38:00",
+      "time": "2025-05-09 08:50:00",
       "result": "Heads",
-      "seed": "5fd022b3-c3a03e02-415e8392-191794ca",
-      "hash": "ec568eda22e51d0bdba6cbb6203a53c402f7e7e2e989ac8a3f840d58592f76fc"
+      "seed": "ad4be1c4-73fe0cd8-41956eb2-f4b7c3c4",
+      "hash": "eb3d005a6586e45d6926affb2f294a8b9ba8486d0626111ed987271327d23811"
     },
     {
-      "time": "2025-05-09 08:37:00",
-      "result": "Heads",
-      "seed": "a2460168-b1a7d3e3-139c8893-080a8daa",
-      "hash": "a46083536e028a1dda599442716eedc58d5809448e5c7edb890b174512bedb2e"
-    },
-    {
-      "time": "2025-05-09 08:36:00",
-      "result": "Heads",
-      "seed": "e25b15dc-082b4806-91644dd1-47caf097",
-      "hash": "87b88807814f22146836f82c34a589a6201d1c5e8385df1d7900589709fbc40f"
-    },
-    {
-      "time": "2025-05-09 08:35:00",
-      "result": "Heads",
-      "seed": "3b497b27-46cafb43-a7f741e2-302f7fef",
-      "hash": "430d46656900257177b193cba2476ca2ebd56b850cd553d47681146986cae3bd"
-    },
-    {
-      "time": "2025-05-09 08:34:00",
+      "time": "2025-05-09 08:49:00",
       "result": "Tails",
-      "seed": "c1a73c05-2e9badae-66cd8eb5-2bcffdb1",
-      "hash": "fdcdd0a4e67e2949cfaa448de4903b7cdaa8af93250251e856a4fcfa3f7f5e7e"
+      "seed": "db3678cd-3586b733-c0878ca3-51069d69",
+      "hash": "158a0bc9a84e882b119556da6070127ea56ae6d7c3a1d8ea2331580453aa08a5"
     },
     {
-      "time": "2025-05-09 08:33:00",
+      "time": "2025-05-09 08:48:00",
       "result": "Heads",
-      "seed": "c1fc95be-d5244aaa-34009fd6-2dac550a",
-      "hash": "462efed48a157c10cc0c2002be156731468f74bf9ad92e2d89c7b9c5f7fb5054"
+      "seed": "e658d191-a1ec6a27-1b524fe2-f315ca0e",
+      "hash": "20d358c2dbcc1078ebef208f43d1fc26f8becf07a8527f42af2ea4e570272e83"
     },
     {
-      "time": "2025-05-09 08:32:00",
-      "result": "Tails",
-      "seed": "b099d801-38fc9f37-b2772e0c-b9bf1965",
-      "hash": "5f8b8bf012748d5e0bf96f4171d988cb2358e3660f6f3ae60b7b4705b98d874f"
+      "time": "2025-05-09 08:47:00",
+      "result": "Heads",
+      "seed": "9374e3af-91967425-c6b21e10-b7d27944",
+      "hash": "0de3b16206231e5d35fc3473a6f928aa3ee29b5842a567bc0ea995477917dd79"
     },
     {
-      "time": "2025-05-09 08:31:00",
+      "time": "2025-05-09 08:46:00",
       "result": "Tails",
-      "seed": "edfb3755-2a869e88-fd243166-7dbeaa5d",
-      "hash": "d8815f52e2f016613b15f06b57fdf01be61debf1ecaaf281be6e3fb0b84a8c54"
+      "seed": "bf319769-7d3d98a8-ccdcdbf3-df8927c1",
+      "hash": "97e57ac9f32ecddb7e5c1b0d263e7bc12a2140fcef6cb3bc66be1d34a09b1f0d"
     }
   ],
   "stats": {
-    "heads": 6,
-    "tails": 4
+    "heads": 5,
+    "tails": 3
   },
-  "last_save": "2025-05-09 08:40:00"
+  "last_save": "2025-05-09 08:56:00"
 }
