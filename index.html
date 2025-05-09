@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Provably Fair Coin Flip - Server Synchronized</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Server Synchronized Coin Flip</h1>
+        
+        <!-- Time Display Section -->
+        <div class="time-display">
+            <div class="time-label">Server Time (UTC):</div>
+            <div id="current_time" class="time-value">Synchronizing...</div>
+        </div>
+
+        <!-- Coin Animation Section -->
+        <div class="flip-container">
+            <div class="coin" id="coin">
+                <div class="side heads"></div>
+                <div class="side tails"></div>
+            </div>
+        </div>
+
+        <!-- Timer and Status Section -->
+        <div class="timer">
+            <p>Next flip in: <span id="countdown">--</span> seconds</p>
+            <p id="status" class="status-message">Connecting to server...</p>
+        </div>
+
+        <!-- Results Section -->
+        <div class="results">
+            <p id="result" class="result-text">Waiting for next flip...</p>
+            
+            <!-- Verification Data -->
+            <div class="seed-info">
+                <p>Seed: <span id="seed" class="mono">Waiting...</span></p>
+                <p>Hash: <span id="hash" class="mono">Waiting...</span></p>
+                <p>Last Flip Time: <span id="lastFlipTime" class="mono">Waiting...</span></p>
+            </div>
+
+            <!-- Flip History Section -->
+            <div class="flip-history">
+                <h3>Flip Statistics</h3>
+                
+                <!-- Statistics Boxes -->
+                <div class="statistics">
+                    <div class="stat-box heads-stat">
+                        <h4>Heads</h4>
+                        <p><span id="headsCount">0</span> flips</p>
+                        <p><span id="headsPercent">0.0</span>%</p>
+                    </div>
+                    <div class="stat-box tails-stat">
+                        <h4>Tails</h4>
+                        <p><span id="tailsCount">0</span> flips</p>
+                        <p><span id="tailsPercent">0.0</span>%</p>
+                    </div>
+                </div>
+
+                <!-- History Table -->
+                <h3>Last 10 Flips</h3>
+                <div class="table-container">
+                    <table id="historyTable">
+                        <thead>
+                            <tr>
+                                <th>Time (UTC)</th>
+                                <th>Result</th>
+                                <th>Seed</th>
+                                <th>Hash</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyBody">
+                            <!-- History rows will be inserted here by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Verification Information -->
+        <div class="verification-info">
+            <h3>Verification Process</h3>
+            <p>This coin flip uses a provably fair system:</p>
+            <ol>
+                <li>The server generates a random seed using a cryptographically secure random number generator</li>
+                <li>The seed is hashed using SHA-256</li>
+                <li>The first bit of the hash determines the outcome (0 = Heads, 1 = Tails)</li>
+            </ol>
+            <p>All flips are synchronized with UTC time and occur at the start of each minute.</p>
+        </div>
+
+        <!-- Server Information -->
+        <div class="server-info">
+            <p>All users see the same result simultaneously.</p>
+            <p>Current version: 1.0.0</p>
+            <p class="small">Server time is synchronized using UTC timezone</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>

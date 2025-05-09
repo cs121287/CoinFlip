@@ -1,0 +1,69 @@
+{
+  "history": [
+    {
+      "time": "2025-05-09 08:40:00",
+      "result": "Tails",
+      "seed": "5cbc5c64-a92b2b16-3cb4837d-d27b538d",
+      "hash": "9466c5d56246f1ea9aa429c05bf8dbede6b36bdd6bf4cb3408e6feb2b615fe57"
+    },
+    {
+      "time": "2025-05-09 08:39:00",
+      "result": "Heads",
+      "seed": "f78aea8c-a69e2ea2-437e8760-fe92b21d",
+      "hash": "c9c6019cfcdb392dd686e9c37e2397760dde5a140415bcb1033ba53b02fcd880"
+    },
+    {
+      "time": "2025-05-09 08:38:00",
+      "result": "Heads",
+      "seed": "5fd022b3-c3a03e02-415e8392-191794ca",
+      "hash": "ec568eda22e51d0bdba6cbb6203a53c402f7e7e2e989ac8a3f840d58592f76fc"
+    },
+    {
+      "time": "2025-05-09 08:37:00",
+      "result": "Heads",
+      "seed": "a2460168-b1a7d3e3-139c8893-080a8daa",
+      "hash": "a46083536e028a1dda599442716eedc58d5809448e5c7edb890b174512bedb2e"
+    },
+    {
+      "time": "2025-05-09 08:36:00",
+      "result": "Heads",
+      "seed": "e25b15dc-082b4806-91644dd1-47caf097",
+      "hash": "87b88807814f22146836f82c34a589a6201d1c5e8385df1d7900589709fbc40f"
+    },
+    {
+      "time": "2025-05-09 08:35:00",
+      "result": "Heads",
+      "seed": "3b497b27-46cafb43-a7f741e2-302f7fef",
+      "hash": "430d46656900257177b193cba2476ca2ebd56b850cd553d47681146986cae3bd"
+    },
+    {
+      "time": "2025-05-09 08:34:00",
+      "result": "Tails",
+      "seed": "c1a73c05-2e9badae-66cd8eb5-2bcffdb1",
+      "hash": "fdcdd0a4e67e2949cfaa448de4903b7cdaa8af93250251e856a4fcfa3f7f5e7e"
+    },
+    {
+      "time": "2025-05-09 08:33:00",
+      "result": "Heads",
+      "seed": "c1fc95be-d5244aaa-34009fd6-2dac550a",
+      "hash": "462efed48a157c10cc0c2002be156731468f74bf9ad92e2d89c7b9c5f7fb5054"
+    },
+    {
+      "time": "2025-05-09 08:32:00",
+      "result": "Tails",
+      "seed": "b099d801-38fc9f37-b2772e0c-b9bf1965",
+      "hash": "5f8b8bf012748d5e0bf96f4171d988cb2358e3660f6f3ae60b7b4705b98d874f"
+    },
+    {
+      "time": "2025-05-09 08:31:00",
+      "result": "Tails",
+      "seed": "edfb3755-2a869e88-fd243166-7dbeaa5d",
+      "hash": "d8815f52e2f016613b15f06b57fdf01be61debf1ecaaf281be6e3fb0b84a8c54"
+    }
+  ],
+  "stats": {
+    "heads": 6,
+    "tails": 4
+  },
+  "last_save": "2025-05-09 08:40:00"
+}
