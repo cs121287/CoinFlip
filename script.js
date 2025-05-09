@@ -1,6 +1,6 @@
 class CoinFlipClient {
     constructor() {
-        this.serverUrl = 'http://localhost:5000/api';
+        this.serverUrl = 'http://192.168.0.209:5000/api';
         this.updateInterval = 100; // 100ms update interval
         this.lastFlipTime = null;
         this.updateTimer = null;
